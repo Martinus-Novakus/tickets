@@ -1,5 +1,8 @@
 namespace TicketingSample.DomainEntities;
 
+///<summary>
+///Core model pre polozku kosika - zoskupuje vybrane podujatie, sektor, rad, sedadlo a cenu listka v case vyberu
+///</summary>
 public class BasketItemModel
 {
     public int EventId { get; set; }

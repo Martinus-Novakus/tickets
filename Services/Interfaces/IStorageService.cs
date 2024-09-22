@@ -3,7 +3,8 @@ using TicketingSample.DomainEntities;
 namespace TicketingSample.Services;
 
 ///<summary>
-///Toto mala byt genericka sluzba, ktorej implementacia moze byt obmenena za iny typ storage (DB/FileStorage/...).
+///Genericka sluzba zastresujuca pracu so storage - povoluje pouzitie s roznymi modelmi.
+///Implementacia tejto sluzby sa moze menit podla pozadovaneho uloziska (DB / Local file storage / ...)
 ///</summary>
 public interface IStorageService<T> where T : EntityBaseModel
 {

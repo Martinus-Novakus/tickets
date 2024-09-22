@@ -20,86 +20,82 @@
 <div class="col-12 col-md-6 mb-3 mb-md-0">
   @using(Html.BeginForm())
   {
-    @Html.HiddenFor(x => x.EventInput.Id)
+    @Html.HiddenFor(x => x.Input.Id)
     <h5>Detaily podujatia</h5>
     <div class="mb-3">
-      @Html.LabelFor(x => x.EventInput.CategoryId, new { @class = "form-label" })
-      @Html.DropDownListFor(x => x.EventInput.CategoryId, Model.CategoryOptions, new { @class = "form-select" })
-      @Html.ValidationMessageFor(x => x.EventInput.CategoryId, "")
+      @Html.LabelFor(x => x.Input.CategoryId, new { @class = "form-label" })
+      @Html.DropDownListFor(x => x.Input.CategoryId, Model.CategoryOptions, new { @class = "form-select" })
+      @Html.ValidationMessageFor(x => x.Input.CategoryId, "")
     </div>
     <div class="mb-3">
-      @Html.LabelFor(x => x.EventInput.Name, new { @class = "form-label" })
-      @Html.TextBoxFor(x => x.EventInput.Name, new { @class = "form-control" })
-      @Html.ValidationMessageFor(x => x.EventInput.Name)
+      @Html.LabelFor(x => x.Input.Name, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.Input.Name, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Input.Name)
     </div>
     <div class="mb-3">
-      @Html.LabelFor(x => x.EventInput.PlaceName, new { @class = "form-label" })
-      @Html.TextBoxFor(x => x.EventInput.PlaceName, new { @class = "form-control" })
-      @Html.ValidationMessageFor(x => x.EventInput.PlaceName)
+      @Html.LabelFor(x => x.Input.PlaceName, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.Input.PlaceName, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Input.PlaceName)
     </div>
     
     <div class="row mb-3">
       <div class="col-12 col-md-6 mb-3 mb-md-0">
-      @Html.LabelFor(x => x.EventInput.StreetAndNumber, new { @class = "form-label" })
-      @Html.TextBoxFor(x => x.EventInput.StreetAndNumber, new { @class = "form-control" })
-      @Html.ValidationMessageFor(x => x.EventInput.StreetAndNumber)
+      @Html.LabelFor(x => x.Input.StreetAndNumber, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.Input.StreetAndNumber, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Input.StreetAndNumber)
     </div>
     <div class="col-12 col-md-6 mb-3 mb-md-0">
-      @Html.LabelFor(x => x.EventInput.City, new { @class = "form-label" })
-      @Html.TextBoxFor(x => x.EventInput.City, new { @class = "form-control" })
-      @Html.ValidationMessageFor(x => x.EventInput.City)
+      @Html.LabelFor(x => x.Input.City, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.Input.City, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Input.City)
     </div>
     </div>
     <div class="row mb-3">
       <div class="col-12 col-md-6 mb-3 mb-md-0">
-        @Html.LabelFor(x => x.EventInput.EventStart, new { @class = "form-label" })
-        @Html.EditorFor(x => x.EventInput.EventStart, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.EventInput.EventStart)
+        @Html.LabelFor(x => x.Input.EventStart, new { @class = "form-label" })
+        @Html.EditorFor(x => x.Input.EventStart, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Input.EventStart)
       </div>
       <div class="col-12 col-md-6 mb-3 mb-md-0">
-        @Html.LabelFor(x => x.EventInput.EventReservationsEnd, new { @class = "form-label" })
-        @Html.EditorFor(x => x.EventInput.EventReservationsEnd, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.EventInput.EventReservationsEnd)
+        @Html.LabelFor(x => x.Input.EventReservationsEnd, new { @class = "form-label" })
+        @Html.EditorFor(x => x.Input.EventReservationsEnd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Input.EventReservationsEnd)
       </div>
     </div>
     <div class="mb-3">
-      @Html.LabelFor(x => x.EventInput.Description, new { @class = "form-label" })
-      @Html.TextAreaFor(x => x.EventInput.Description, new { @class = "form-control", rows="10" })
-      @Html.ValidationMessageFor(x => x.EventInput.Description)
+      @Html.LabelFor(x => x.Input.Description, new { @class = "form-label" })
+      @Html.TextAreaFor(x => x.Input.Description, new { @class = "form-control", rows="10" })
+      @Html.ValidationMessageFor(x => x.Input.Description)
     </div>
-
-    @if(Model.SectorInput != null)
-    {
-      <hr/>
-      <h5>Sektor</h5>
-      <div class="mb-3">
-        @Html.LabelFor(x => x.SectorInput!.Id, new { @class = "form-label" })
-        @Html.DropDownListFor(x => x.SectorInput!.Id, Model.SectorOptions, new { @class = "form-select", dataeventid=Model.EventInput.Id })
-        @Html.ValidationMessageFor(x => x.SectorInput!.Id)
+    <hr/>
+    <h5>Sektor</h5>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.Input.SectorId, new { @class = "form-label" })
+      @Html.DropDownListFor(x => x.Input.SectorId, Model.SectorOptions, new { @class = "form-select", dataeventid=Model.Input.Id })
+      @Html.ValidationMessageFor(x => x.Input.SectorId)
+    </div>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.Input.SectorName, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.Input.SectorName, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Input.SectorName)
+    </div>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.Input.Price, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.Input.Price, new { @class = "form-control", @type = "number" })
+      @Html.ValidationMessageFor(x => x.Input.Price)
+    </div>
+    <div class="row mb-3">
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        @Html.LabelFor(x => x.Input.RowCount, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.Input.RowCount, new { @class = "form-control", @type = "number" })
+        @Html.ValidationMessageFor(x => x.Input.RowCount)
       </div>
-      <div class="mb-3">
-        @Html.LabelFor(x => x.SectorInput!.Name, new { @class = "form-label" })
-        @Html.TextBoxFor(x => x.SectorInput!.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.SectorInput!.Name)
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        @Html.LabelFor(x => x.Input.SeatsPerRow, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.Input.SeatsPerRow, new { @class = "form-control", @type = "number" })
+        @Html.ValidationMessageFor(x => x.Input.SeatsPerRow)
       </div>
-      <div class="mb-3">
-        @Html.LabelFor(x => x.SectorInput!.Price, new { @class = "form-label" })
-        @Html.TextBoxFor(x => x.SectorInput!.Price, new { @class = "form-control", @type = "number" })
-        @Html.ValidationMessageFor(x => x.SectorInput!.Price)
-      </div>
-      <div class="row mb-3">
-        <div class="col-12 col-md-6 mb-3 mb-md-0">
-          @Html.LabelFor(x => x.SectorInput!.RowCount, new { @class = "form-label" })
-          @Html.TextBoxFor(x => x.SectorInput!.RowCount, new { @class = "form-control", @type = "number" })
-          @Html.ValidationMessageFor(x => x.SectorInput!.RowCount)
-        </div>
-        <div class="col-12 col-md-6 mb-3 mb-md-0">
-          @Html.LabelFor(x => x.SectorInput!.SeatsPerRow, new { @class = "form-label" })
-          @Html.TextBoxFor(x => x.SectorInput!.SeatsPerRow, new { @class = "form-control", @type = "number" })
-          @Html.ValidationMessageFor(x => x.SectorInput!.SeatsPerRow)
-        </div>
-      </div>
-    }
+    </div>
     <button type="submit" class="btn btn-dark">Upraviť</button>
   }
 </div>

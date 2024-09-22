@@ -11,12 +11,6 @@ public class ApiService : IApiService
         _client = client;
     }
 
-    // public async Task<string> GetAsync(string path, CancellationToken cancellationToken)
-    // {
-    //     var response = await _client.GetAsync(path, cancellationToken);
-    //     return await response.Content.ReadAsStringAsync(cancellationToken);
-    // }
-
     public async Task<Stream> GetAsync(string path, CancellationToken cancellationToken)
     {
         var response = await _client.GetAsync(path, cancellationToken);

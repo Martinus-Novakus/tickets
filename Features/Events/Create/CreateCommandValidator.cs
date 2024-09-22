@@ -8,6 +8,9 @@ public class CreateCommandValidator : AbstractValidator<CreateCommand>
 {
     private readonly IStorageService<EventCategoryModel> _eventCategoryStorageService;
 
+    ///<summary>
+    ///Domain layer validator pre properties podujatia
+    ///</summary>
     public CreateCommandValidator(
         IStorageService<EventCategoryModel> eventCategoryStorageService
     )
@@ -62,6 +65,9 @@ public class CreateCommandValidator : AbstractValidator<CreateCommand>
         _eventCategoryStorageService = eventCategoryStorageService;
     }
 
+    ///<summary>
+    ///Zvolena kategoria musi existovat
+    ///</summary>
     private bool BeExistingEventCategory(int categoryId)
     {
         return _eventCategoryStorageService.GetList().Any(x => x.Id == categoryId);

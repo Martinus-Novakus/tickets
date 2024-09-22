@@ -9,6 +9,9 @@ public static class SeatsHelper
     private static readonly int _maxRows = 15;
     private static readonly int _maxSeats = 30;
 
+    ///<summary>
+    ///Vygenerovanie sedadiel sektora podla zadanych vstupov
+    ///</summary>
     public static List<SeatModel> GenerateSeats(int rowCount, int seatCount, bool randomOccupation = false)
     {
         var result = new List<SeatModel>();
@@ -24,6 +27,9 @@ public static class SeatsHelper
         return result;
     }
 
+    ///<summary>
+    ///Vygenerovanie sedadiel sektora nahodne
+    ///</summary>
     public static List<SeatModel> GenerateRandomSeats()
         => GenerateSeats(
             _random.Next(1, _maxRows),
@@ -31,9 +37,15 @@ public static class SeatsHelper
             true
         );
 
+    ///<summary>
+    ///Ziskanie poctu radov zo zoznamu sedadiel sektora
+    ///</summary>
     public static int GetRowCount(IEnumerable<SeatResponseDTO> seats)
         => seats.Select(x => x.RowId).Distinct().Count();
 
+    ///<summary>
+    ///Ziskanie poctu sedadiel zo zoznamu sedadiel sektora
+    ///</summary>
     public static int GetSeatCount(IEnumerable<SeatResponseDTO> seats)
         => seats.Select(x => x.SeatId).Distinct().Count();
 }

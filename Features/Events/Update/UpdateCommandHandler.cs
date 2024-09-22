@@ -28,7 +28,7 @@ public class UpdateCommandHandler : IRequestHandler<UpdateCommand>
     {
         await _validator.ValidateAndThrowAsync(request, cancellationToken);
         
-        var evnt = _eventStorageService.Get(request.EventRequestDto.Id) 
+        var evnt = _eventStorageService.Get(request.Id) 
             ?? throw new EntityNotFoundException<EventModel>();
 
         _eventStorageService.Update(
@@ -38,26 +38,26 @@ public class UpdateCommandHandler : IRequestHandler<UpdateCommand>
 
     private EventModel MapEvent(UpdateCommand source, EventModel destination)
     {
-        var category = _eventCategoryStorageService.Get(source.EventRequestDto.CategoryId) 
+        var category = _eventCategoryStorageService.Get(source.CategoryId) 
             ?? throw new EntityNotFoundException<EventCategoryModel>();
 
         destination.Category = category;
-        destination.Name = source.EventRequestDto.Name;
-        destination.PlaceName = source.EventRequestDto.PlaceName;
-        destination.StreetAndNumber = source.EventRequestDto.StreetAndNumber;
-        destination.City = source.EventRequestDto.City;
-        destination.Description = source.EventRequestDto.Description;
-        destination.EventStart = source.EventRequestDto.EventStart ?? default;
-        destination.EventReservationsEnd = source.EventRequestDto.EventReservationsEnd ?? default;
+        destination.Name = source.Name;
+        destination.PlaceName = source.PlaceName;
+        destination.StreetAndNumber = source.StreetAndNumber;
+        destination.City = source.City;
+        destination.Description = source.Description;
+        destination.EventStart = source.EventStart;
+        destination.EventReservationsEnd = source.EventReservationsEnd;
 
-        if(source.EventSectorRequestDto != null)
+        if(source != null)
         {
             destination.UpdateSector(
                 new SectorModel(
-                    source.EventSectorRequestDto.Id,
-                    source.EventSectorRequestDto.Name,
-                    source.EventSectorRequestDto.Price ?? default,
-                    SeatsHelper.GenerateSeats(source.EventSectorRequestDto.RowCount ?? default, source.EventSectorRequestDto.SeatsPerRow ?? default)
+                    source.SectorId,
+                    source.SectorName,
+                    source.Price,
+                    SeatsHelper.GenerateSeats(source.RowCount, source.SeatsPerRow)
                 )
             );
         }

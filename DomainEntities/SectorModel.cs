@@ -1,5 +1,8 @@
 namespace TicketingSample.DomainEntities;
 
+///<summary>
+///Core model pre sektor podujatia
+///</summary>
 public class SectorModel : EntityBaseModel
 {
     public SectorModel(int id, string name, decimal price, IEnumerable<SeatModel> seats) : base(id)

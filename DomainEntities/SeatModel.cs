@@ -1,5 +1,8 @@
 namespace TicketingSample.DomainEntities;
 
+///<summary>
+///Core model pre sedadlo sektora
+///</summary>
 public class SeatModel : EntityBaseModel
 {
     public SeatModel(int id, int rowId, int seatId, bool reserved) : base(id)

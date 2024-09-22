@@ -1,5 +1,8 @@
 namespace TicketingSample.DomainEntities;
 
+///<summary>
+///Core model pre kosik
+///</summary>
 public class BasketModel
 {
     public decimal TotalPrice { get; set; }

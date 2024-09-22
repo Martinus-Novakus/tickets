@@ -20,10 +20,7 @@ public class ManageEventsUpdateModel : PageBase<ManageEventsUpdateModel>
     }
 
     [BindProperty]
-    public UpdateEventViewModel EventInput { get; set; } = null!;
-
-    [BindProperty]
-    public UpdateSectorViewModel? SectorInput { get; set; }
+    public UpdateEventViewModel Input { get; set; } = null!;
     public IEnumerable<SelectListItem> SectorOptions { get; set; } = [];
     public EventResponseDTO Detail { get; set; } = null!;
     public IEnumerable<SelectListItem> CategoryOptions { get; set; } = [];
@@ -40,11 +37,9 @@ public class ManageEventsUpdateModel : PageBase<ManageEventsUpdateModel>
     {
         await SetDataAsync(id, cancellationToken);
 
-        EventInput = new (Detail);
-
         if(Detail.Sectors.Any())
         {
-            SectorInput = new(Detail.Sectors.First());
+            Input = new (Detail, Detail.Sectors.First());
         }
     }
 
@@ -73,9 +68,20 @@ public class ManageEventsUpdateModel : PageBase<ManageEventsUpdateModel>
         }
 
         await _mediator.Send(new UpdateCommand(
-            _mapper.Map<UpdateEventRequestDTO>(EventInput),
-            SectorInput == null ? null :
-                _mapper.Map<UpdateEventSectorRequestDTO>(SectorInput)
+            Input.Id,
+            Input.Name,
+            Input.PlaceName,
+            Input.StreetAndNumber,
+            Input.City,
+            Input.Description,
+            Input.CategoryId,
+            Input.EventStart ?? default,
+            Input.EventReservationsEnd ?? default,
+            Input.SectorId,
+            Input.Price ?? default,
+            Input.SectorName,
+            Input.RowCount ?? default,
+            Input.SeatsPerRow ?? default
         ), cancellationToken);
 
         await SetDataAsync(cancellationToken);

@@ -39,6 +39,8 @@ public class ReservationCommandHandler : IRequestHandler<ReservationCommand>
                 Price = sector.Price
         }));
 
-        //+ rovno rezervovat sedadla v podujatiach?? nastavit casovac dokedy su rezervovane predtym nez sa uvolnia alebo commitne sa objednavka
+        //next steps: okrem ulozenia do kosika by mozno bolo vhodne rovno urobit docasnu rezervaciu kym sa objednavka nepotvrdi
+        //sucastou potvrdenia objednavky by malo byt aj overenie ceny listkov v kosiku (cookie) s cenou z uloziska v pripade, 
+        //ze by pouzivatel zasahoval do cookies...
     }
 }

@@ -2,6 +2,9 @@ using MediatR;
 
 namespace TicketingSample.Features.Events.Create;
 
+///<summary>
+///Command na vytvorenie noveho podujatia s jednym sektorom
+///</summary>
 public record CreateCommand(
     string Name,
     string PlaceName,

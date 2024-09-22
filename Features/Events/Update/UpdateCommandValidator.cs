@@ -14,66 +14,56 @@ public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
         IStorageService<EventCategoryModel> eventCategoryStorageService
     )
     {
-        RuleFor(x => x.EventRequestDto.Id)
+        RuleFor(x => x.Id)
         .NotEmpty()
         .Must(BeExistingEvent);
 
-        RuleFor(x => x.EventRequestDto.CategoryId)
+        RuleFor(x => x.CategoryId)
         .NotEmpty()
         .Must(BeExistingEventCategory);
 
-        RuleFor(x => x.EventRequestDto.Name)
+        RuleFor(x => x.Name)
         .NotEmpty()
         .MaximumLength(100);
 
-        RuleFor(x => x.EventRequestDto.PlaceName)
+        RuleFor(x => x.PlaceName)
         .NotEmpty()
         .MaximumLength(100);
 
-        RuleFor(x => x.EventRequestDto.StreetAndNumber)
+        RuleFor(x => x.StreetAndNumber)
         .NotEmpty()
         .MaximumLength(255);
 
-        RuleFor(x => x.EventRequestDto.City)
+        RuleFor(x => x.City)
         .NotEmpty()
         .MaximumLength(50);
 
-        RuleFor(x => x.EventRequestDto.Description)
+        RuleFor(x => x.Description)
         .MaximumLength(5000);
 
-        RuleFor(x => x.EventRequestDto.EventStart)
+        RuleFor(x => x.EventStart)
         .NotEmpty();
 
-        RuleFor(x => x.EventRequestDto.EventReservationsEnd)
+        RuleFor(x => x.EventReservationsEnd)
         .NotEmpty();
 
-        When(x => x.EventSectorRequestDto != null, () => {
-            RuleFor(x => x)
-            .Must(BeExistingEventSector).WithMessage(x => $"Selected sector does not exist for this event");
-        });
+        RuleFor(x => x)
+        .Must(BeExistingEventSector).WithMessage(x => $"Selected sector does not exist for this event");
 
-        When(x => x.EventSectorRequestDto != null, () => {
-            RuleFor(x => x.EventSectorRequestDto!.Price)
-            .GreaterThan(1)
-            .LessThan(1000000);
-        });
+        RuleFor(x => x.Price)
+        .GreaterThan(1)
+        .LessThan(1000000);
 
-        When(x => x.EventSectorRequestDto != null, () => {
-            RuleFor(x => x.EventSectorRequestDto!.Name)
-            .MaximumLength(100);
-        });
+        RuleFor(x => x.SectorName)
+        .MaximumLength(100);
 
-        When(x => x.EventSectorRequestDto != null, () => {
-            RuleFor(x => x.EventSectorRequestDto!.RowCount)
-            .GreaterThan(1)
-            .LessThan(100);
-        });
+        RuleFor(x => x.RowCount)
+        .GreaterThan(1)
+        .LessThan(100);
 
-        When(x => x.EventSectorRequestDto != null, () => {
-            RuleFor(x => x.EventSectorRequestDto!.SeatsPerRow)
-            .GreaterThan(1)
-            .LessThan(100);
-        });
+        RuleFor(x => x.SeatsPerRow)
+        .GreaterThan(1)
+        .LessThan(100);
 
         _eventStorageService = eventStorageService;
         _eventCategoryStorageService = eventCategoryStorageService;
@@ -91,6 +81,6 @@ public class UpdateCommandValidator : AbstractValidator<UpdateCommand>
 
     private bool BeExistingEventSector(UpdateCommand request)
     {        
-        return request.EventSectorRequestDto?.Id == null || _eventStorageService.GetList().Any(x => x.Id == request.EventRequestDto.Id && x.Sectors.Any(y => y.Id == request.EventSectorRequestDto.Id));
+        return _eventStorageService.GetList().Any(x => x.Id == request.Id && x.Sectors.Any(y => y.Id == request.SectorId));
     }
 }

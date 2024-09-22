@@ -1,7 +1,8 @@
-using TicketingSample.Helpers;
-
 namespace TicketingSample.DomainEntities;
 
+///<summary>
+///Core model pre podujatie
+///</summary>
 public class EventModel : EntityBaseModel
 {
     public EventModel(int id) : base(id)
@@ -27,16 +28,6 @@ public class EventModel : EntityBaseModel
     {
         if(sector != null && Sectors.Any(x => x.Id == sector.Id))
         {
-            // var list = Sectors.ToList();
-            // list.RemoveAll(x => x.Id == sector!.Id);
-            // list.Add(
-            //     new (
-            //         sector.Id,
-            //         sector.Name,
-            //         sector.Price,
-            //         sector.Seats = SeatsHelper.GenerateSeats(sector.)
-            //     )
-            // );
             var newSector = Sectors.First(x => x.Id == sector.Id);
             newSector.Name = sector.Name;
             newSector.Price = sector.Price;
