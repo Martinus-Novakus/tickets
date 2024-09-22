@@ -5,10 +5,10 @@ namespace TicketingSample.Features.Basket.Reservation;
 
 public class EventBasketService : IEventBasketService
 {
-    private readonly IBasketService _basketService;
+    private readonly ICookieService<BasketModel> _basketService;
 
     public EventBasketService(
-        IBasketService basketService
+        ICookieService<BasketModel> basketService
     )
     {
         _basketService = basketService;
@@ -16,7 +16,7 @@ public class EventBasketService : IEventBasketService
 
     public void AddRange(IEnumerable<BasketItemModel> reservations)
     {
-        var basket = _basketService.Get();
+        var basket = _basketService.Get() ?? new();
 
         foreach (var item in reservations)
         {

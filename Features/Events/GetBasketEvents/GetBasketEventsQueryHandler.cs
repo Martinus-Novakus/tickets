@@ -7,12 +7,12 @@ namespace TicketingSample.Features.Events.GetBasketEvents;
 
 public class GetBasketEventsQueryHandler : IRequestHandler<GetBasketEventsQuery, IEnumerable<BasketItemDetailDTO>>
 {
-    private readonly IBasketService _basketService;
+    private readonly ICookieService<BasketModel> _basketService;
     private readonly IStorageService<EventModel> _storageService;
     private readonly IMapper _mapper;
 
     public GetBasketEventsQueryHandler(
-        IBasketService basketService,
+        ICookieService<BasketModel> basketService,
         IStorageService<EventModel> storageService,
         IMapper mapper
     )
@@ -24,7 +24,7 @@ public class GetBasketEventsQueryHandler : IRequestHandler<GetBasketEventsQuery,
 
     public async Task<IEnumerable<BasketItemDetailDTO>> Handle(GetBasketEventsQuery request, CancellationToken cancellationToken)
     {
-        var basket = _basketService.Get();
+        var basket = _basketService.Get() ?? new();
 
         var result = basket.Items.Select(item => {
             var evnt = _storageService.Get(item.EventId);

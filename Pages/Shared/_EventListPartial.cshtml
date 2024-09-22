@@ -23,9 +23,8 @@
                         <a asp-page="/Events/Index" asp-route-id="@item.Id" class="btn btn-light">Detail podujatia</a>
                         @if(item.EventReservationsEnd >= DateTime.Now)
                         {
-                                <a asp-page="/Events/Tickets" asp-route-id="@item.Id" class="btn btn-dark">Vstupenky</a>
-                        }
-                        
+                            <a asp-page="/Events/Tickets" asp-route-id="@item.Id" class="btn btn-dark">Vstupenky</a>
+                        }                        
                     </div>
                 </div>
             </div>

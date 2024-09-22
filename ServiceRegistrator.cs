@@ -13,7 +13,7 @@ public static class ServiceRegistrator
         services.AddHttpContextAccessor();
         
         services.AddScoped(typeof(IStorageService<>), typeof(CacheStorageService<>));
-        services.AddScoped<IBasketService, BasketService>();
+        services.AddScoped(typeof(ICookieService<>), typeof(CookieService<>));
 
         services.AddHttpClient<IApiService, ApiService>(x => {
             x.BaseAddress = new Uri("https://www.ticketportal.sk");
@@ -28,7 +28,5 @@ public static class ServiceRegistrator
 
         services.AddScoped<Features.Basket.Reservation.IEventBasketService, Features.Basket.Reservation.EventBasketService>();
         services.AddScoped<IValidator<Features.Basket.Reservation.ReservationCommand>, Features.Basket.Reservation.ReservationCommandValidator>();
-
-        services.AddScoped<Features.Basket.Get.IEventBasketService, Features.Basket.Get.EventBasketService>();
     }
 }
