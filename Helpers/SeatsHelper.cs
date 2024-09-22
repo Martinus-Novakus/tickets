@@ -17,7 +17,7 @@ public static class SeatsHelper
         {
             foreach(var seatId in Enumerable.Range(1, seatCount).ToList())
             {
-                result.Add(new SeatModel(index, rowId, seatId, randomOccupation && _random.Next(100) < 30));
+                result.Add(new SeatModel(index, rowId, seatId, randomOccupation && _random.Next(1, 100) < 30));
                 index++;
             }
         }
@@ -26,8 +26,8 @@ public static class SeatsHelper
 
     public static List<SeatModel> GenerateRandomSeats()
         => GenerateSeats(
-            _random.Next(_maxRows),
-            _random.Next(_maxSeats),
+            _random.Next(1, _maxRows),
+            _random.Next(1, _maxSeats),
             true
         );
 

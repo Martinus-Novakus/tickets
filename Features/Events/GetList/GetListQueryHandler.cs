@@ -9,23 +9,26 @@ namespace TicketingSample.Features.Events.GetList;
 public class GetListQueryHandler : IRequestHandler<GetListQuery, IEnumerable<EventResponseDTO>>
 {
     private readonly IEventApiService _eventApiService;
-    private readonly IStorageService<EventModel> _storageService;
+    private readonly IStorageService<EventModel> _eventStorageService;
+    private readonly IStorageService<EventCategoryModel> _eventCategoryStorageService;
     private readonly IMapper _mapper;
 
     public GetListQueryHandler(
         IEventApiService eventApiService,
-        IStorageService<EventModel> storageService,
+        IStorageService<EventModel> eventStorageService,
+        IStorageService<EventCategoryModel> eventCategoryStorageService,
         IMapper mapper
     )
     {
         _eventApiService = eventApiService;
-        _storageService = storageService;
+        _eventStorageService = eventStorageService;
+        _eventCategoryStorageService = eventCategoryStorageService;
         _mapper = mapper;
     }
-
+    
     public async Task<IEnumerable<EventResponseDTO>> Handle(GetListQuery request, CancellationToken cancellationToken)
     {
-        var list = _storageService.GetList();
+        var list = _eventStorageService.GetList();
 
         if(list.Any())
         {
@@ -41,10 +44,20 @@ public class GetListQueryHandler : IRequestHandler<GetListQuery, IEnumerable<Eve
                 x.Seats = SeatsHelper.GenerateRandomSeats();
                 return x;
             }).ToList();
+
+            _eventStorageService.Create(item);
         }
 
-        _storageService.SetList(list);
+        StoreEventCategories(list.Select(x => x.Category).DistinctBy(x => x.Id).ToList());
 
         return _mapper.Map<List<EventResponseDTO>>(list);
+    }
+
+    private void StoreEventCategories(IEnumerable<EventCategoryModel> categories)
+    {
+        foreach (var category in categories)
+        {
+            _eventCategoryStorageService.Create(category);            
+        }
     }
 }

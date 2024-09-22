@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Samples\\DotNet\\TicketingSample\\TicketingSample.csproj": {}
+    "D:\\Samples\\DotNet\\TicketingSample\\TicketingSample.csproj": {}
   },
   "projects": {
-    "d:\\Samples\\DotNet\\TicketingSample\\TicketingSample.csproj": {
+    "D:\\Samples\\DotNet\\TicketingSample\\TicketingSample.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Samples\\DotNet\\TicketingSample\\TicketingSample.csproj",
+        "projectUniqueName": "D:\\Samples\\DotNet\\TicketingSample\\TicketingSample.csproj",
         "projectName": "TicketingSample",
-        "projectPath": "d:\\Samples\\DotNet\\TicketingSample\\TicketingSample.csproj",
+        "projectPath": "D:\\Samples\\DotNet\\TicketingSample\\TicketingSample.csproj",
         "packagesPath": "C:\\Users\\novak\\.nuget\\packages\\",
-        "outputPath": "d:\\Samples\\DotNet\\TicketingSample\\obj\\",
+        "outputPath": "D:\\Samples\\DotNet\\TicketingSample\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

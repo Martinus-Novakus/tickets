@@ -25,10 +25,9 @@ public class GetBasketEventsQueryHandler : IRequestHandler<GetBasketEventsQuery,
     public async Task<IEnumerable<BasketItemDetailDTO>> Handle(GetBasketEventsQuery request, CancellationToken cancellationToken)
     {
         var basket = _basketService.Get();
-        var list = _storageService.GetList();
 
         var result = basket.Items.Select(item => {
-            var evnt = list.FirstOrDefault(e => e.Id == item.EventId);
+            var evnt = _storageService.Get(item.EventId);
             var res = _mapper.Map<BasketItemDetailDTO>(evnt);
             res = _mapper.Map(item, res);
             res.SectorName = evnt?.Sectors.FirstOrDefault(e => e.Id == item.SectorId)?.Name ?? string.Empty;

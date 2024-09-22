@@ -34,3 +34,4 @@ D:\Samples\DotNet\TicketingSample\obj\Debug\net8.0\refint\TicketingSample.dll
 D:\Samples\DotNet\TicketingSample\obj\Debug\net8.0\TicketingSample.pdb
 D:\Samples\DotNet\TicketingSample\obj\Debug\net8.0\TicketingSample.genruntimeconfig.cache
 D:\Samples\DotNet\TicketingSample\obj\Debug\net8.0\ref\TicketingSample.dll
+D:\Samples\DotNet\TicketingSample\obj\Debug\net8.0\TicketingSample.sourcelink.json

@@ -11,12 +11,12 @@ public class BasketIndexModel : PageBase<BasketIndexModel>
 
     public IEnumerable<BasketItemDetailDTO> List { get; set; } = null!;
 
-    public async Task OnGetAsync(int id, CancellationToken cancellationToken)
+    public async Task OnGetAsync(CancellationToken cancellationToken)
     {
-        await SetDataAsync(id, cancellationToken);
+        await SetDataAsync(cancellationToken);
     }
 
-    protected override async Task SetDataInternalAsync(int id, CancellationToken cancellationToken)
+    protected override async Task SetDataInternalAsync(CancellationToken cancellationToken)
     {
         List = await _mediator.Send(new GetBasketEventsQuery(), cancellationToken);
     }
