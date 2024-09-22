@@ -42,16 +42,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Samples/DotNet/TicketingSample/Pages/Manage/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlXENyZWF0ZS5jc2h0bWw=
+[D:/Samples/DotNet/TicketingSample/Pages/Manage/Events/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlXEV2ZW50c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Samples/DotNet/TicketingSample/Pages/Manage/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlXEluZGV4LmNzaHRtbA==
+[D:/Samples/DotNet/TicketingSample/Pages/Manage/Events/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlXEV2ZW50c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Samples/DotNet/TicketingSample/Pages/Manage/Update.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlXFVwZGF0ZS5jc2h0bWw=
+[D:/Samples/DotNet/TicketingSample/Pages/Manage/Events/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlXEV2ZW50c1xVcGRhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Samples/DotNet/TicketingSample/Pages/Shared/_BasketPartial.cshtml]

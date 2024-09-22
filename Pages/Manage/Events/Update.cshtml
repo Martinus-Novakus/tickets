@@ -1,5 +1,5 @@
-﻿@page "/manazovat/{id:int}/upravit"
-@model ManageUpdateModel
+﻿@page "/manazment/podujatia/{id:int}/uprava"
+@model ManageEventsUpdateModel
 @{
     ViewData["Title"] = $"Úprava podujatia";
 }
@@ -22,6 +22,11 @@
   {
     @Html.HiddenFor(x => x.EventInput.Id)
     <h5>Detaily podujatia</h5>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.EventInput.CategoryId, new { @class = "form-label" })
+      @Html.DropDownListFor(x => x.EventInput.CategoryId, Model.CategoryOptions, new { @class = "form-select" })
+      @Html.ValidationMessageFor(x => x.EventInput.CategoryId, "", new { @class = "invalid-feedback" })
+    </div>
     <div class="mb-3">
       @Html.LabelFor(x => x.EventInput.Name, new { @class = "form-label" })
       @Html.TextBoxFor(x => x.EventInput.Name, new { @class = "form-control" })

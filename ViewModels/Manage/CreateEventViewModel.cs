@@ -6,6 +6,10 @@ namespace TicketingSample.ViewModels.Manage;
 
 public class CreateEventViewModel
 {
+    [DisplayName("Kategória podujatia"),
+    Required(ErrorMessage = Constants.ValidationMessages.Required)]
+    public int CategoryId { get; set; }
+    
     [DisplayName("Názov podujatia"),
     Required(ErrorMessage = Constants.ValidationMessages.Required), 
     MaxLength(100, ErrorMessage = Constants.ValidationMessages.MaxLength)]

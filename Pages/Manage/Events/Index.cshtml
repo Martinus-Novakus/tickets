@@ -1,5 +1,5 @@
-﻿@page "/manazovat"
-@model ManageIndexModel
+﻿@page "/manazment/podujatia"
+@model ManageEventsIndexModel
 @{
     ViewData["Title"] = $"Správca podujatí";
 }
@@ -30,7 +30,7 @@
     </div>
     <div class="input-group col-12 col-md">
         @Html.Label("filter", "Typ podujatia", new { @class = "input-group-text"})
-        @Html.DropDownList("filter",  Model.EventTypeOptions, "", new { @class="form-select" })
+        @Html.DropDownList("filter",  Model.CategoryOptions, "", new { @class="form-select" })
     </div>
     <div class="col-12 col-md">
         <button type="submit" class="btn btn-dark">Vyhľadať</button>

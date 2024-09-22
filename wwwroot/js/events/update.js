@@ -9,7 +9,7 @@ $("#SectorInput_Id").on("change", function(){
     const eventId = $(this).attr("dataeventid");
     const sectorId = $(this).val();
     
-    api.get(`/manazovat/${eventId}/upravit?handler=Sector&sectorId=${sectorId}`)
+    api.get(`/manazment/podujatia/${eventId}/uprava?handler=Sector&sectorId=${sectorId}`)
     .then(resp => {
         var data = JSON.parse(resp);
         sectorInputs.name.val(data.name);

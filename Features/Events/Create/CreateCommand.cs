@@ -8,6 +8,7 @@ public record CreateCommand(
     string StreetAndNumber,
     string City,
     string Description,
+    int CategoryId,
     DateTime EventStart,
     DateTime EventReservationsEnd,
     decimal Price,

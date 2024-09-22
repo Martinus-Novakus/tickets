@@ -15,6 +15,8 @@ public class CacheStorageService<T> : IStorageService<T> where T : EntityBaseMod
         _memoryCache = memoryCache;
     }
 
+    private static string GetKey(int id) => $"{typeof(T)}_{id}";
+
     public void Create(T item)
     {
         _memoryCache.Set(GetKey(item.Id), item);
@@ -41,17 +43,17 @@ public class CacheStorageService<T> : IStorageService<T> where T : EntityBaseMod
         }
     }
 
-    private static string GetKey(int id) => $"{typeof(T)}_{id}";
-
     private IEnumerable<string> GetAllKeys()
     {
-        var cacheEntriesCollectionDefinition = typeof(MemoryCache).GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance);
-        var cacheEntriesCollection = cacheEntriesCollectionDefinition?.GetValue(_memoryCache) as dynamic;
+        var coherentState = typeof(MemoryCache).GetField("_coherentState", BindingFlags.NonPublic | BindingFlags.Instance);
+        var coherentStateValue = coherentState?.GetValue(_memoryCache);
+        var entriesCollection = coherentStateValue?.GetType().GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance);
+        var entriesCollectionValue = entriesCollection?.GetValue(coherentStateValue) as dynamic;
 
-        if(cacheEntriesCollection == null) return [];
+        if(entriesCollectionValue == null) return [];
         var cacheItems = new List<string>();
 
-        foreach (var cacheItem in cacheEntriesCollection)
+        foreach (var cacheItem in entriesCollectionValue)
         {
             var key = cacheItem.GetType().GetProperty("Key").GetValue(cacheItem, null);
             cacheItems.Add(key.ToString());

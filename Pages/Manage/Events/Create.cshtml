@@ -1,5 +1,5 @@
-﻿@page "/manazovat/vytvorit"
-@model ManageCreateModel
+﻿@page "/manazment/podujatia/nove"
+@model ManageEventsCreateModel
 @{
     ViewData["Title"] = $"Nové podujatie";
 }
@@ -17,6 +17,11 @@
   @using(Html.BeginForm())
   {
     <h5>Detaily podujatia</h5>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.Input.CategoryId, new { @class = "form-label" })
+      @Html.DropDownListFor(x => x.Input.CategoryId, Model.CategoryOptions, new { @class = "form-select" })
+      @Html.ValidationMessageFor(x => x.Input.CategoryId, "", new { @class = "invalid-feedback" })
+    </div>
     <div class="mb-3">
       @Html.LabelFor(x => x.Input.Name, new { @class = "form-label" })
       @Html.TextBoxFor(x => x.Input.Name, new { @class = "form-control" })

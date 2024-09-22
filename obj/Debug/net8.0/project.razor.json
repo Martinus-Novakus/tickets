@@ -19334,8 +19334,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\Samples\\DotNet\\TicketingSample\\Pages\\Manage\\Index.cshtml",
-      "TargetPath": "Pages\\Manage\\Index.cshtml",
+      "FilePath": "d:\\Samples\\DotNet\\TicketingSample\\Pages\\Manage\\Events\\Update.cshtml",
+      "TargetPath": "Pages\\Manage\\Events\\Update.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -19351,11 +19351,6 @@
     {
       "FilePath": "d:\\Samples\\DotNet\\TicketingSample\\Pages\\Shared\\_Layout.cshtml",
       "TargetPath": "Pages\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "d:\\Samples\\DotNet\\TicketingSample\\Pages\\Manage\\Create.cshtml",
-      "TargetPath": "Pages\\Manage\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -19389,8 +19384,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "d:\\Samples\\DotNet\\TicketingSample\\Pages\\Manage\\Update.cshtml",
-      "TargetPath": "Pages\\Manage\\Update.cshtml",
+      "FilePath": "d:\\Samples\\DotNet\\TicketingSample\\Pages\\Manage\\Events\\Index.cshtml",
+      "TargetPath": "Pages\\Manage\\Events\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -19406,6 +19401,11 @@
     {
       "FilePath": "d:\\Samples\\DotNet\\TicketingSample\\Pages\\Index.cshtml",
       "TargetPath": "Pages\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Samples\\DotNet\\TicketingSample\\Pages\\Manage\\Events\\Create.cshtml",
+      "TargetPath": "Pages\\Manage\\Events\\Create.cshtml",
       "FileKind": "mvc"
     }
   ],

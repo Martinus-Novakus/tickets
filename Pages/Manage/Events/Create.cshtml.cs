@@ -1,18 +1,26 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using TicketingSample.Features.Events.Create;
+using TicketingSample.Features.Events.GetEventCategoryList;
 using TicketingSample.ViewModels.Manage;
 
 namespace TicketingSample.Pages;
 
-public class ManageCreateModel : PageBase<ManageCreateModel>
+public class ManageEventsCreateModel : PageBase<ManageEventsCreateModel>
 {
-    public ManageCreateModel(ILogger<ManageCreateModel> logger, IMediator mediator) : base(logger, mediator)
+    public ManageEventsCreateModel(ILogger<ManageEventsCreateModel> logger, IMediator mediator) : base(logger, mediator)
     {
     }
 
     [BindProperty]
     public CreateEventViewModel Input { get; set; } = null!;
+    public IEnumerable<SelectListItem> CategoryOptions { get; set; } = [];
+    protected override async Task SetDataInternalAsync(CancellationToken cancellationToken)
+    {
+        CategoryOptions = (await _mediator.Send(new GetEventCategoryListQuery(), cancellationToken))
+            .Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+    }
 
     public async Task OnGetAsync(CancellationToken cancellationToken)
     {
@@ -33,6 +41,7 @@ public class ManageCreateModel : PageBase<ManageCreateModel>
             Input.StreetAndNumber,
             Input.City,
             Input.Description,
+            Input.CategoryId,
             Input.EventStart,
             Input.EventReservationsEnd,
             Input.Price,

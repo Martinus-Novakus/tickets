@@ -3,17 +3,18 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TicketingSample.Features.Events.Get;
+using TicketingSample.Features.Events.GetEventCategoryList;
 using TicketingSample.Features.Events.Update;
 using TicketingSample.Helpers;
 using TicketingSample.ViewModels.Manage;
 
 namespace TicketingSample.Pages;
 
-public class ManageUpdateModel : PageBase<ManageUpdateModel>
+public class ManageEventsUpdateModel : PageBase<ManageEventsUpdateModel>
 {
     private readonly IMapper _mapper;
 
-    public ManageUpdateModel(ILogger<ManageUpdateModel> logger, IMediator mediator, IMapper mapper) : base(logger, mediator)
+    public ManageEventsUpdateModel(ILogger<ManageEventsUpdateModel> logger, IMediator mediator, IMapper mapper) : base(logger, mediator)
     {
         _mapper = mapper;
     }
@@ -25,11 +26,14 @@ public class ManageUpdateModel : PageBase<ManageUpdateModel>
     public UpdateSectorViewModel? SectorInput { get; set; }
     public IEnumerable<SelectListItem> SectorOptions { get; set; } = [];
     public EventResponseDTO Detail { get; set; } = null!;
+    public IEnumerable<SelectListItem> CategoryOptions { get; set; } = [];
 
     protected override async Task SetDataInternalAsync(int id, CancellationToken cancellationToken)
     {
         Detail = await _mediator.Send(new GetQuery(id), cancellationToken);
         SectorOptions = Detail.Sectors.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+        CategoryOptions = (await _mediator.Send(new GetEventCategoryListQuery(), cancellationToken))
+            .Select(x => new SelectListItem(x.Name, x.Id.ToString(), Detail.Category.Id == x.Id));
     }
 
     public async Task OnGetAsync(int id, CancellationToken cancellationToken)

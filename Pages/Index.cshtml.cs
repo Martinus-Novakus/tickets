@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using TicketingSample.Features.Events.GetEventCategoryList;
 using TicketingSample.Features.Events.GetList;
 
 namespace TicketingSample.Pages;
@@ -11,7 +12,7 @@ public class IndexModel : PageBase<IndexModel>
     }
 
     public IEnumerable<EventResponseDTO> Events { get; set; } = [];
-    public IEnumerable<SelectListItem> EventTypeOptions { get; set; } = [];
+    public IEnumerable<SelectListItem> CategoryOptions { get; set; } = [];
 
     public async Task OnGetAsync(CancellationToken cancellationToken)
     {
@@ -21,6 +22,7 @@ public class IndexModel : PageBase<IndexModel>
     protected override async Task SetDataInternalAsync(CancellationToken cancellationToken)
     {
         Events = await _mediator.Send(new GetListQuery(), cancellationToken);
-        EventTypeOptions = Events.DistinctBy(x => x.Category.Id).Select(x => new SelectListItem(x.Category.Name, x.Category.Id.ToString()));
+        CategoryOptions = (await _mediator.Send(new GetEventCategoryListQuery(), cancellationToken))
+            .Select(x => new SelectListItem(x.Name, x.Id.ToString()));
     }
 }

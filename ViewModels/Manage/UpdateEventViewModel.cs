@@ -26,6 +26,10 @@ public class UpdateEventViewModel
     }
 
     public int Id { get; set; }
+    
+    [DisplayName("Kategória podujatia"),
+    Required(ErrorMessage = Constants.ValidationMessages.Required)]
+    public int CategoryId { get; set; }
 
     [DisplayName("Názov podujatia"),
     Required(ErrorMessage = Constants.ValidationMessages.Required), 
