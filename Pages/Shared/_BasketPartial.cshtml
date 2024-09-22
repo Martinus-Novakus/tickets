@@ -1,0 +1,17 @@
+@model TicketingSample.Features.Basket.Get.BasketResponseDTO
+
+<a asp-page="/Basket/Index" class="nav-link text-dark px-0">
+    <div class="d-flex gap-3">
+        <div class="position-relative">
+            <img alt="basket-icon" src="/icons/menu-cart.svg" />
+            <div class="basket-item-count">
+                <div>
+                    @Model.ItemsCount
+                </div>
+            </div>
+        </div>
+        <div>
+            @Model.TotalPrice€
+        </div>
+    </div>
+</a>

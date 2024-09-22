@@ -1,0 +1,75 @@
+﻿@page "/podujatia/{id:int}"
+@model EventsIndexModel
+@{
+    ViewData["Title"] = $"Detail podujatia";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-page="/Index">Domov</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.Detail.Name</li>
+    </ol>
+</nav>
+
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+    <img alt="@Model.Detail.Name" src="@Model.Detail.ImageUrl" class="col-12 img-fluid rounded-start" />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <div>@Model.Detail.Category.Name</div>
+        <h5 class="card-title display-6">@Model.Detail.Name</h5>
+        <hr>
+        <div class="card-text">
+            <div class="fs-5">@Model.Detail.EventStart.ToDisplayDateTime()</div>
+            <p class="fs-4 mb-0">
+                @Model.Detail.PlaceName
+            </p>
+            <p class="fs-5">
+                @Model.Detail.StreetAndNumber, @Model.Detail.City
+            </p>
+        </div>
+        <hr>
+        <div class="card-text">
+            <h5 >Vstupenky</h5>
+            <p>
+                Vstupenky budú dostupné do @Model.Detail.EventReservationsEnd.ToDisplayDateTime()
+            </p>
+            <div>
+                @if(Model.Detail.EventReservationsEnd >= DateTime.Now)
+                {
+                        <a asp-page="./Tickets" asp-route-id="@Model.Detail.Id" class="btn btn-dark">Kúpiť vstupenky</a>
+                }else{
+                    <p class="card-text"><i class="text-body-secondary">Vypredané</i></p>
+                }
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <h5 class="card-header bg-dark text-white">Popis podujatia</h5>
+  <div class="card-body">
+    <p class="card-text">
+        @Html.Raw(Model.Detail.Description)        
+    </p>
+  </div>
+</div>
+
+<div class="card">
+  <h5 class="card-header bg-dark text-white">Cenník vstupeniek</h5>
+  <div class="card-body">
+    <p class="card-text">
+    <ul>
+        @foreach(var item in Model.Detail.Sectors)
+        {
+            <li class="list-unstyled text-capitalize">@item.Name: <b>@item.Price€</b></li>
+        }
+    </ul>     
+    </p>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+﻿@page "/podujatia/{id:int}/vstupenky"
+@model EventsTicketsModel
+@{
+  ViewData["Title"] = $"Vstupenky";
+}
+
+@section Scripts{
+  <script asp-append-version="true" src="/js/events/tickets.js"></script>
+}
+
+<link rel="stylesheet" href="~/css/tickets.css" asp-append-version="true" />
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a asp-page="/Index">Domov</a></li>
+    <li class="breadcrumb-item"><a asp-page="/Events/Index" asp-route-id="@Model.Detail.Id">@Model.Detail.Name</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Vstupenky</li>
+  </ol>
+</nav>
+
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img alt="@Model.Detail.Name" src="@Model.Detail.ImageUrl" class="col-12 img-fluid rounded-start" />
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <div>@Model.Detail.Category.Name</div>
+        <h5 class="card-title display-6">@Model.Detail.Name</h5>
+        <hr>
+        <div class="card-text">
+          <h5>Vstupenky</h5>
+          <p>
+            Vstupenky budú dostupné do @Model.Detail.EventReservationsEnd.ToDisplayDateTime()
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="card">
+  <h5 class="card-header bg-dark text-white">Vyberte si miesta</h5>
+  <div class="card-body">
+    @if (Model.Detail.EventReservationsEnd >= DateTime.Now && Model.Detail.Sectors.Any())
+    {
+      @using(Html.BeginForm()){
+        <div class="card-text">
+          <div class="input-group col-12 col-md mb-3">
+              @Html.Label("sectors", "Výber sektora", new { @class = "input-group-text"})
+              @Html.DropDownList("sectors", Model.SectorOptions, new { @class = "form-select", dataeventid=Model.Detail.Id })
+              <button type="submit" class="btn btn-success">Do košíka</button>
+          </div>
+          <div>
+            @Html.ValidationSummary("", new { @class = "invalid-feedback" })
+          </div>
+
+          <div id="sector-container">
+            @await Html.PartialAsync("./Partials/_SectorPartial.cshtml", Model.Input)
+          </div>
+        </div>
+      }
+    }
+    else
+    {
+      <p class="card-text"><i class="text-body-secondary">Vypredané</i></p>
+    }
+  </div>
+</div>
+

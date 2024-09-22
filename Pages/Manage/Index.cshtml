@@ -1,0 +1,66 @@
+﻿@page "/manazovat"
+@model ManageIndexModel
+@{
+    ViewData["Title"] = $"Správca podujatí";
+}
+
+@section Scripts{
+  <script asp-append-version="true" src="/js/search.js"></script>
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+    </ol>
+</nav>
+
+<div class="row align-items-center">
+  <div class="col-12 col-md">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+  </div>
+  <div class="col-12 col-md-auto mb-3 mb-md-0">
+    <a asp-page="./Create" class="btn btn-dark">Vytvoriť podujatie</a>
+  </div>
+</div>
+
+<form id="searchForm" class="row g-3 mb-3">
+    <div class="input-group col-12 col-md">
+        @Html.Label("search", "Názov podujatia", new { @class = "input-group-text"})
+        @Html.TextBox("search", "", new { @class = "form-control", placeholder = "Vyhľadať podujatie"})
+    </div>
+    <div class="input-group col-12 col-md">
+        @Html.Label("filter", "Typ podujatia", new { @class = "input-group-text"})
+        @Html.DropDownList("filter",  Model.EventTypeOptions, "", new { @class="form-select" })
+    </div>
+    <div class="col-12 col-md">
+        <button type="submit" class="btn btn-dark">Vyhľadať</button>
+    </div>
+</form>
+
+<div id="list" class="row g-3">
+  <table class="table table-striped-columns">
+    <thead>
+      <tr>        
+		    <th>Názov</th>
+		    <th class="d-none d-md-table-cell">Hľadisko</th>
+		    <th class="d-none d-md-table-cell">Adresa</th>
+		    <th>Začiatok</th>
+		    <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var item in Model.Events.OrderBy(x => x.EventStart))
+      {
+        <tr data-filter='@item.Category.Id' data-search='@item.Name'>
+          <td>@item.Name</td>
+          <td class="d-none d-md-table-cell">@item.PlaceName</td>
+          <td class="d-none d-md-table-cell">@item.StreetAndNumber, @item.City</td>
+          <td>@item.EventStart.ToDisplayDateTime()</td>
+          <td>
+            <a asp-page="./Update" asp-route-id="@item.Id" class="btn btn-dark">Upraviť</a>
+          </td>
+        </tr>
+      }
+    </tbody>
+</table>
+</div>

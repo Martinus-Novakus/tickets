@@ -1,0 +1,16 @@
+.seat{
+  width: 30px;
+  height: 30px;
+  border-radius: .5rem;
+  background-color: white;
+  cursor: pointer;
+  border: 1px solid gray;
+}
+
+.seat.reserved{
+  background-color: red;
+}
+
+.seat.selected{
+  background-color: green;
+}

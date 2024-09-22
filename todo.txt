@@ -1,0 +1,52 @@
+Zadanie:
+	Vytvorte jednoduchú (napr. pomocou javascript + jquery + bootstrap + ine) aplikáciu s nasledovnými stránkami:
+
+1. Zoznam podujatí:
+	Zobrazuje zoznam podujatí. Zoznam najdete tu: https://www.ticketportal.sk/xml/out/partnerall.xml?ID_partner=37
+	Zoznam si spracujte a pracujte s datami iba lokalne, to bude stačit.
+
+	Vypíšte tabulku:
+		Názov
+		hladisko
+		adresa
+		zaciatok
+		link na editaciu
+
+2. Vytvorenie/úprava podujatia:
+	Umožňuje vytvoriť nové podujatie alebo upraviť existujúce.
+	Obsahuje nasledovné polia:
+		názov podujatia
+		hladisko
+		adresa
+		zaciatok
+		cenu vstupenky
+		jeden sektor:
+			- Počet radov
+			- Počet sedadiel v rade
+
+3. Na základe zadaných informácií v predstaveni o počte radov a sedadiel v rade vykreslite "hľadisko" s voľnými a predanými miestami, stav jednotlivých miest voľných / obsadenych si určite náhodne a uložte si ho.
+	- Každé miesto ma obsahovať informacie (predane, volne, rad, miesto, u voľného miesta aj cena, ... )
+	- Možnost označiť/odznačiť voľné miesto kliknutím naň 
+	- Niekam umiestniť košík, v ktorom sa zobrazí počet a sumárna hodnota označených miest
+
+4. Aplikáciu umiestnite niekam na free hosting, aby sa dala pozriet v reálnom svete
+
+---------------------------------------------------------------------------
+Požiadavky
+	Aplikácia by mala byť responzívna.
+	Dbajte na čistotu kódu.
+	Nepoužívajte TypeScript.
+	Komentáre pre lepšiu zrozumiteľnosť.
+
+Uchádzač bude hodnotený na základe nasledovných kritérií:
+	Kvalita kódu
+	Funkčnosť aplikácie
+	Responzivita a dizajn
+	Dodržiavanie zadania
+	Čas potrebný na dokončenie úlohy
+
+----------------------------------------------------------------------------
+Bonusové body
+	Implementujte validáciu formulára pre stránku s vytvorením/úpravou podujatia.
+	Umožnite filtrovanie a vyhľadávanie podujatí.
+	Implementujte stránku s detailom podujatia (View).

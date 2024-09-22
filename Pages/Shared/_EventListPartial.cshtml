@@ -1,0 +1,37 @@
+@model IEnumerable<TicketingSample.Features.Events.GetList.EventResponseDTO>
+
+@foreach (var item in Model.OrderBy(x => x.EventStart))
+{
+    <div class="col-12 col-sm-6 text-white" data-filter='@item.Category.Id' data-search='@item.Name'>
+        <div class="card-header bg-dark text-center">
+            @item.Category.Name
+        </div>
+        <div class="card-body bg-secondary">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <a asp-page="/Events/Index" asp-route-id="@item.Id">
+                        <img alt="@item.Name" src="@item.ImageUrl" class="col-12" />
+                    </a>
+                </div>
+                <div class="text-start col-12 col-lg-6 d-flex align-items-center">
+                    <div>
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text"><strong>@item.PlaceName</strong> <br/> @item.StreetAndNumber, @item.City</p>
+                        <p>
+                            Predaj vstupeniek je možný do <b>@item.EventReservationsEnd.ToDisplayDateTime()</b>
+                        </p>
+                        <a asp-page="/Events/Index" asp-route-id="@item.Id" class="btn btn-light">Detail podujatia</a>
+                        @if(item.EventReservationsEnd >= DateTime.Now)
+                        {
+                                <a asp-page="/Events/Tickets" asp-route-id="@item.Id" class="btn btn-dark">Vstupenky</a>
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer bg-dark text-center">
+            @item.EventStart.ToDisplayDateTime()
+        </div>
+    </div>
+}

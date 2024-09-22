@@ -1,0 +1,21 @@
+@model ViewModels.Events.SectorViewModel
+
+@using(Html.BeginForm()){
+    @Html.HiddenFor(x => x.SectorId);
+    @foreach (var seats in Model.Seats.GroupBy(x => x.RowId))
+    {
+        <div class="d-flex mb-1">
+            <div class="mx-auto d-flex gap-1">
+                @foreach (var seat in seats)
+                {
+                    var cls = String.Join(' ', "seat", seat.Reserved ? "reserved" : "");
+
+                    <div class="d-flex align-items-center">
+                        @Html.CheckBoxFor(x => x.SelectedSeats[seat.Id], new { @class = "d-none" })
+                        <div data-id="@seat.Id" class="@cls" title="@(seat.Reserved ? "Rezervované - " : "")Rad:@seat.RowId Miesto:@seat.SeatId"></div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}

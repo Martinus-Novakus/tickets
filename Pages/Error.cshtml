@@ -1,0 +1,13 @@
+﻿@page 
+@model ErrorModel
+@{
+    ViewData["Title"] = @Model.Model.Title;
+}
+<div class="container">
+    <div class="mx-auto text-center">
+        <h1 class="display-1">@Model.Model.StatusCode</h1>
+        <h2 class="display-2">@Model.Model.Title</h2>
+        <h3>@Model.Model.SubTitle</h3>
+        <a asp-page="/Index" class="btn btn-dark">Domov</a>
+    </div>
+</div>

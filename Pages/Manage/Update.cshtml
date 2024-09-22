@@ -1,0 +1,100 @@
+﻿@page "/manazovat/{id:int}/upravit"
+@model ManageUpdateModel
+@{
+    ViewData["Title"] = $"Úprava podujatia";
+}
+
+@section Scripts{
+  <script asp-append-version="true" src="/js/events/update.js"></script>
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-page="./Index">Správca podujatí</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+    </ol>
+</nav>
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+
+<div class="col-12 col-md-6 mb-3 mb-md-0">
+  @using(Html.BeginForm())
+  {
+    @Html.HiddenFor(x => x.EventInput.Id)
+    <h5>Detaily podujatia</h5>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.EventInput.Name, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.EventInput.Name, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.EventInput.Name)
+    </div>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.EventInput.PlaceName, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.EventInput.PlaceName, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.EventInput.PlaceName)
+    </div>
+    
+    <div class="row mb-3">
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+      @Html.LabelFor(x => x.EventInput.StreetAndNumber, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.EventInput.StreetAndNumber, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.EventInput.StreetAndNumber)
+    </div>
+    <div class="col-12 col-md-6 mb-3 mb-md-0">
+      @Html.LabelFor(x => x.EventInput.City, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.EventInput.City, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.EventInput.City)
+    </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        @Html.LabelFor(x => x.EventInput.EventStart, new { @class = "form-label" })
+        @Html.EditorFor(x => x.EventInput.EventStart, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.EventInput.EventStart)
+      </div>
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        @Html.LabelFor(x => x.EventInput.EventReservationsEnd, new { @class = "form-label" })
+        @Html.EditorFor(x => x.EventInput.EventReservationsEnd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.EventInput.EventReservationsEnd)
+      </div>
+    </div>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.EventInput.Description, new { @class = "form-label" })
+      @Html.TextAreaFor(x => x.EventInput.Description, new { @class = "form-control", rows="10" })
+      @Html.ValidationMessageFor(x => x.EventInput.Description)
+    </div>
+
+    @if(Model.SectorInput != null)
+    {
+      <hr/>
+      <h5>Sektor</h5>
+      <div class="mb-3">
+        @Html.LabelFor(x => x.SectorInput!.Id, new { @class = "form-label" })
+        @Html.DropDownListFor(x => x.SectorInput!.Id, Model.SectorOptions, new { @class = "form-select", dataeventid=Model.EventInput.Id })
+        @Html.ValidationMessageFor(x => x.SectorInput!.Id)
+      </div>
+      <div class="mb-3">
+        @Html.LabelFor(x => x.SectorInput!.Name, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.SectorInput!.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.SectorInput!.Name)
+      </div>
+      <div class="mb-3">
+        @Html.LabelFor(x => x.SectorInput!.Price, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.SectorInput!.Price, new { @class = "form-control", @type = "number" })
+        @Html.ValidationMessageFor(x => x.SectorInput!.Price)
+      </div>
+      <div class="row mb-3">
+        <div class="col-12 col-md-6 mb-3 mb-md-0">
+          @Html.LabelFor(x => x.SectorInput!.RowCount, new { @class = "form-label" })
+          @Html.TextBoxFor(x => x.SectorInput!.RowCount, new { @class = "form-control", @type = "number" })
+          @Html.ValidationMessageFor(x => x.SectorInput!.RowCount)
+        </div>
+        <div class="col-12 col-md-6 mb-3 mb-md-0">
+          @Html.LabelFor(x => x.SectorInput!.SeatsPerRow, new { @class = "form-label" })
+          @Html.TextBoxFor(x => x.SectorInput!.SeatsPerRow, new { @class = "form-control", @type = "number" })
+          @Html.ValidationMessageFor(x => x.SectorInput!.SeatsPerRow)
+        </div>
+      </div>
+    }
+    <button type="submit" class="btn btn-dark">Upraviť</button>
+  }
+</div>

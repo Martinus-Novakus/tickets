@@ -1,0 +1,86 @@
+﻿@page "/manazovat/vytvorit"
+@model ManageCreateModel
+@{
+    ViewData["Title"] = $"Nové podujatie";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-page="./Index">Správca podujatí</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+    </ol>
+</nav>
+
+<h1 class="display-4">@ViewData["Title"]</h1>
+
+<div class="col-12 col-md-6 mb-3 mb-md-0">
+  @using(Html.BeginForm())
+  {
+    <h5>Detaily podujatia</h5>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.Input.Name, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.Input.Name, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Input.Name, "", new { @class = "invalid-feedback" })
+    </div>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.Input.PlaceName, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.Input.PlaceName, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Input.PlaceName, "", new { @class = "invalid-feedback" })
+    </div>
+    
+    <div class="row mb-3">
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+      @Html.LabelFor(x => x.Input.StreetAndNumber, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.Input.StreetAndNumber, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Input.StreetAndNumber, "", new { @class = "invalid-feedback" })
+    </div>
+    <div class="col-12 col-md-6 mb-3 mb-md-0">
+      @Html.LabelFor(x => x.Input.City, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.Input.City, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Input.City, "", new { @class = "invalid-feedback" })
+    </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        @Html.LabelFor(x => x.Input.EventStart, new { @class = "form-label" })
+        @Html.EditorFor(x => x.Input.EventStart, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Input.EventStart, "", new { @class = "invalid-feedback" })
+      </div>
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        @Html.LabelFor(x => x.Input.EventReservationsEnd, new { @class = "form-label" })
+        @Html.EditorFor(x => x.Input.EventReservationsEnd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Input.EventReservationsEnd, "", new { @class = "invalid-feedback" })
+      </div>
+    </div>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.Input.Description, new { @class = "form-label" })
+      @Html.TextAreaFor(x => x.Input.Description, new { @class = "form-control", rows="10" })
+      @Html.ValidationMessageFor(x => x.Input.Description, "", new { @class = "invalid-feedback" })
+    </div>
+    <hr/>
+    <h5>Sektor</h5>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.Input.SectorName, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.Input.SectorName, new { @class = "form-control" })
+      @Html.ValidationMessageFor(x => x.Input.SectorName, "", new { @class = "invalid-feedback" })
+    </div>
+    <div class="mb-3">
+      @Html.LabelFor(x => x.Input.Price, new { @class = "form-label" })
+      @Html.TextBoxFor(x => x.Input.Price, new { @class = "form-control", @type = "number" })
+      @Html.ValidationMessageFor(x => x.Input.Price, "", new { @class = "invalid-feedback" })
+    </div>
+    <div class="row mb-3">
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        @Html.LabelFor(x => x.Input.RowCount, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.Input.RowCount, new { @class = "form-control", @type = "number" })
+        @Html.ValidationMessageFor(x => x.Input.RowCount, "", new { @class = "invalid-feedback" })
+      </div>
+      <div class="col-12 col-md-6 mb-3 mb-md-0">
+        @Html.LabelFor(x => x.Input.SeatsPerRow, new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.Input.SeatsPerRow, new { @class = "form-control", @type = "number" })
+        @Html.ValidationMessageFor(x => x.Input.SeatsPerRow, "", new { @class = "invalid-feedback" })
+      </div>
+    </div>
+    <button type="submit" class="btn btn-dark">Vytvoriť</button>
+  }
+</div>
