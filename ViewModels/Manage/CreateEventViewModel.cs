@@ -37,16 +37,16 @@ public class CreateEventViewModel
 
     [DisplayName("Začiatok podujatia"),
     Required(ErrorMessage = Constants.ValidationMessages.Required)]
-    public DateTime EventStart { get; set; }
+    public DateTime? EventStart { get; set; }
 
     [DisplayName("Koniec rezervácií"),
     Required(ErrorMessage = Constants.ValidationMessages.Required)]
-    public DateTime EventReservationsEnd { get; set; }
+    public DateTime? EventReservationsEnd { get; set; }
 
     [DisplayName("Cena lístka"),
     Required(ErrorMessage = Constants.ValidationMessages.Required), 
-    Range(1,1000000, ErrorMessage = Constants.ValidationMessages.Range)]
-    public decimal Price { get; set; }
+    Range(1, 1000000, ErrorMessage = Constants.ValidationMessages.Range)]
+    public decimal? Price { get; set; }
 
     [DisplayName("Názov sektora"),
     Required(ErrorMessage = Constants.ValidationMessages.Required), 
@@ -56,10 +56,10 @@ public class CreateEventViewModel
     [DisplayName("Počet radov sektora"),
     Required(ErrorMessage = Constants.ValidationMessages.Required),
     Range(1,100, ErrorMessage = Constants.ValidationMessages.Range)]
-    public int RowCount { get; set; }
+    public int? RowCount { get; set; }
 
     [DisplayName("Počet sedadiel v rade"),
     Required(ErrorMessage = Constants.ValidationMessages.Required),
     Range(1,100, ErrorMessage = Constants.ValidationMessages.Range)]
-    public int SeatsPerRow { get; set; }
+    public int? SeatsPerRow { get; set; }
 }

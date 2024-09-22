@@ -42,12 +42,12 @@ public class ManageEventsCreateModel : PageBase<ManageEventsCreateModel>
             Input.City,
             Input.Description,
             Input.CategoryId,
-            Input.EventStart,
-            Input.EventReservationsEnd,
-            Input.Price,
+            Input.EventStart.HasValue ? Input.EventStart.Value : default,
+            Input.EventReservationsEnd.HasValue ? Input.EventReservationsEnd.Value : default,
+            Input.Price.HasValue ? Input.Price.Value : default,
             Input.SectorName,
-            Input.RowCount,
-            Input.SeatsPerRow
+            Input.RowCount.HasValue ? Input.RowCount.Value : default,
+            Input.SeatsPerRow.HasValue ? Input.SeatsPerRow.Value : default
         ), cancellationToken);
 
         return RedirectToPage("./Index");

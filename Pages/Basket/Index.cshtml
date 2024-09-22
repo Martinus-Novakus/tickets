@@ -4,10 +4,6 @@
   ViewData["Title"] = "Košík";
 }
 
-@section Scripts{
-  <script asp-append-version="true" src="/js/events/confirm.js"></script>
-}
-
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a asp-page="/Index">Domov</a></li>
@@ -16,44 +12,50 @@
 </nav>
 
 <div>
-  @foreach (var item in Model.List)
+  @if(Model.List.Any())
   {
-    <div class="card mb-3">
-      <div class="row g-0">
-        <div class="col-md-3">
-          <a asp-page="/Events/Index" asp-route-id="@item.Id">
-            <img alt="@item.Name" src="@item.ImageUrl" class="col-12" />
-          </a>
-        </div>
-        <div class="col-md-9 row align-items-center">
-          <div class="col-8 p-3">
-            <h5 class="display-5">@item.Name</h5>
-            <p>
-              <strong>@item.PlaceName</strong>
-              <br>
-              @item.StreetAndNumber, @item.City
-            </p>
-            <hr>
-            <dl class="row">
-              <dt class="col-3">Sektor:</dt>
-              <dd class="col-9">@item.SectorName</dd>
 
-              <dt class="col-3">Rad:</dt>
-              <dd class="col-9">@item.RowId</dd>
-
-              <dt class="col-3">Sedadlo:</dt>
-              <dd class="col-9">@item.SeatId</dd>
-            </dl>
+    @foreach (var item in Model.List)
+    {
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-3">
+            <a asp-page="/Events/Index" asp-route-id="@item.Id">
+              <img alt="@item.Name" src="@item.ImageUrl" class="col-12" />
+            </a>
           </div>
-          <div class="col-4 p-3 row align-items-center border-1 border-start h-100">
-            <div>
-              <strong class="fs-3">Cena</strong>
-              <div class="fs-1">@item.Price€</div>
+          <div class="col-md-9 row align-items-center">
+            <div class="col-8 p-3">
+              <h5 class="display-5">@item.Name</h5>
+              <p>
+                <strong>@item.PlaceName</strong>
+                <br>
+                @item.StreetAndNumber, @item.City
+              </p>
+              <hr>
+              <dl class="row">
+                <dt class="col-3">Sektor:</dt>
+                <dd class="col-9">@item.SectorName</dd>
+
+                <dt class="col-3">Rad:</dt>
+                <dd class="col-9">@item.RowId</dd>
+
+                <dt class="col-3">Sedadlo:</dt>
+                <dd class="col-9">@item.SeatId</dd>
+              </dl>
+            </div>
+            <div class="col-4 p-3 row align-items-center border-1 border-start h-100">
+              <div>
+                <strong class="fs-3">Cena</strong>
+                <div class="fs-1">@item.Price€</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    }
+  }else{
+    <p class="text-center">Košík je prázdny</p>
   }
 </div>
 

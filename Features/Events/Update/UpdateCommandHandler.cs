@@ -47,8 +47,8 @@ public class UpdateCommandHandler : IRequestHandler<UpdateCommand>
         destination.StreetAndNumber = source.EventRequestDto.StreetAndNumber;
         destination.City = source.EventRequestDto.City;
         destination.Description = source.EventRequestDto.Description;
-        destination.EventStart = source.EventRequestDto.EventStart;
-        destination.EventReservationsEnd = source.EventRequestDto.EventReservationsEnd;
+        destination.EventStart = source.EventRequestDto.EventStart ?? default;
+        destination.EventReservationsEnd = source.EventRequestDto.EventReservationsEnd ?? default;
 
         if(source.EventSectorRequestDto != null)
         {
@@ -56,8 +56,8 @@ public class UpdateCommandHandler : IRequestHandler<UpdateCommand>
                 new SectorModel(
                     source.EventSectorRequestDto.Id,
                     source.EventSectorRequestDto.Name,
-                    source.EventSectorRequestDto.Price,
-                    SeatsHelper.GenerateSeats(source.EventSectorRequestDto.RowCount, source.EventSectorRequestDto.SeatsPerRow)
+                    source.EventSectorRequestDto.Price ?? default,
+                    SeatsHelper.GenerateSeats(source.EventSectorRequestDto.RowCount ?? default, source.EventSectorRequestDto.SeatsPerRow ?? default)
                 )
             );
         }

@@ -27,6 +27,11 @@
 </form>
 
 <div id="list" class="row g-3">
-    @await Html.PartialAsync("/Pages/Shared/_EventListPartial.cshtml", upcomingEvents)
-    @await Html.PartialAsync("/Pages/Shared/_EventListPartial.cshtml", oldEvents)
+    @if(Model.Events.Any())
+    {
+        @await Html.PartialAsync("/Pages/Shared/_EventListPartial.cshtml", upcomingEvents)
+        @await Html.PartialAsync("/Pages/Shared/_EventListPartial.cshtml", oldEvents)
+    }else{
+        <p>Aktuálne žiadne podujatia</p>
+    }
 </div>

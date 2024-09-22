@@ -29,7 +29,7 @@ public class UpdateSectorViewModel
     [DisplayName("Cena lístka"),
     Required(ErrorMessage = Constants.ValidationMessages.Required), 
     Range(1,1000000, ErrorMessage = Constants.ValidationMessages.Range)]
-    public decimal Price { get; set; }
+    public decimal? Price { get; set; }
 
     [DisplayName("Názov sektora"),
     Required(ErrorMessage = Constants.ValidationMessages.Required), 
@@ -39,10 +39,10 @@ public class UpdateSectorViewModel
     [DisplayName("Počet radov sektora"),
     Required(ErrorMessage = Constants.ValidationMessages.Required),
     Range(1,100, ErrorMessage = Constants.ValidationMessages.Range)]
-    public int RowCount { get; set; }
+    public int? RowCount { get; set; }
 
     [DisplayName("Počet sedadiel v rade"),
     Required(ErrorMessage = Constants.ValidationMessages.Required),
     Range(1,100, ErrorMessage = Constants.ValidationMessages.Range)]
-    public int SeatsPerRow { get; set; }
+    public int? SeatsPerRow { get; set; }
 }

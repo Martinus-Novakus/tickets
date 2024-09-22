@@ -58,9 +58,9 @@ public class UpdateEventViewModel
 
     [DisplayName("Začiatok podujatia"),
     Required(ErrorMessage = Constants.ValidationMessages.Required)]
-    public DateTime EventStart { get; set; }
+    public DateTime? EventStart { get; set; }
 
     [DisplayName("Koniec rezervácií"),
     Required(ErrorMessage = Constants.ValidationMessages.Required)]
-    public DateTime EventReservationsEnd { get; set; }
+    public DateTime? EventReservationsEnd { get; set; }
 }

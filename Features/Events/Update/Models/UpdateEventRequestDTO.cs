@@ -8,6 +8,6 @@ public record UpdateEventRequestDTO(
     string StreetAndNumber,
     string City,
     string Description,
-    DateTime EventStart,
-    DateTime EventReservationsEnd
+    DateTime? EventStart,
+    DateTime? EventReservationsEnd
 );

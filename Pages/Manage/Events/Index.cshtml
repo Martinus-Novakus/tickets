@@ -49,17 +49,22 @@
       </tr>
     </thead>
     <tbody>
-      @foreach (var item in Model.Events.OrderBy(x => x.EventStart))
+      @if(Model.Events.Any())
       {
-        <tr data-filter='@item.Category.Id' data-search='@item.Name'>
-          <td>@item.Name</td>
-          <td class="d-none d-md-table-cell">@item.PlaceName</td>
-          <td class="d-none d-md-table-cell">@item.StreetAndNumber, @item.City</td>
-          <td>@item.EventStart.ToDisplayDateTime()</td>
-          <td>
-            <a asp-page="./Update" asp-route-id="@item.Id" class="btn btn-dark">Upraviť</a>
-          </td>
-        </tr>
+        @foreach (var item in Model.Events.OrderBy(x => x.EventStart))
+        {
+          <tr data-filter='@item.Category.Id' data-search='@item.Name'>
+            <td>@item.Name</td>
+            <td class="d-none d-md-table-cell">@item.PlaceName</td>
+            <td class="d-none d-md-table-cell">@item.StreetAndNumber, @item.City</td>
+            <td>@item.EventStart.ToDisplayDateTime()</td>
+            <td>
+              <a asp-page="./Update" asp-route-id="@item.Id" class="btn btn-dark">Upraviť</a>
+            </td>
+          </tr>
+        }
+      }else{
+        <tr><td colspal="5">Aktuálne žiadne podujatia</td></tr>
       }
     </tbody>
 </table>

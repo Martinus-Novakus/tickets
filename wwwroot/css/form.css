@@ -17,9 +17,9 @@ input[type='datetime-local']{
 }
 
 .input-validation-error{
-  border: 1px solid red;
+  border: 1px solid red !important;
 }
 
-.input-validation-error ~ span{
+.input-validation-error ~ span, div:has(.input-validation-error) > label{
   color: red;
 }
